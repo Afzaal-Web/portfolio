@@ -1,4 +1,8 @@
 const projectsGrid = document.getElementById('projects-grid');
+const previousButton = document.getElementById('previous');
+const nextButton = document.getElementById('next');
+const pagination = document.getElementById('pagination-numbers');
+
 const projects = [
     { url: 'https://Afzaal-Web.github.io/Palindrome-JS-Checker' },
     { url: 'https://Afzaal-Web.github.io/Roman-Numeral-Converter' },
@@ -47,6 +51,59 @@ const projects = [
     { url: 'https://afzaal-241212.github.io/oveseas' },
 ];
 
+
+const projectPerPage = 6;
+let currentPage = 1;
+
+const totalPages = Math.ceil(projects.length / projectPerPage);
+
+nextButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    if (currentPage < totalPages) {
+        currentPage++;
+        showVanillaJsProjects();
+    }
+});
+
+previousButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    if (currentPage > 1) {
+        currentPage--;
+        showVanillaJsProjects();
+    }
+});
+
+const renderPageNumbers = () => {
+    pagination.innerHTML = '';
+    for(let i = 1; i <= totalPages; i++){
+        const pageLink = document.createElement('button');
+    pageLink.textContent = i;
+if (i === currentPage) {
+      pageLink.classList.add('active');
+    }
+    pageLink.addEventListener('click', (e) => {
+        currentPage = i;
+        showVanillaJsProjects();
+    });
+    pagination.appendChild(pageLink);
+
+    }
+    if (currentPage === 1) {
+    previousButton.disabled = true;
+} else {
+    previousButton.disabled = false;
+}
+
+if (currentPage === totalPages) {
+    nextButton.disabled = true;
+} else {
+    nextButton.disabled = false;
+}
+
+    
+
+}
+
 const getData = () => {
     projects.forEach((project) => {
         if (!project.title || !project.screenshot) {
@@ -70,18 +127,37 @@ const getData = () => {
     });
 }
 
-
 const showVanillaJsProjects = () => {
+  projectsGrid.classList.remove('visible'); // Start fade out
+
+  setTimeout(() => {
+    projectsGrid.innerHTML = '';
     getData();
-    projects.forEach((project) => {
-        projectsGrid.innerHTML += `
-         <a class="project-tile" href="${project.url}" target="_blank">
-        <img src="${project.screenshot}" alt="${project.title}" onerror="this.onerror = null; this.src ='images/sample.png'" rel="noopener noreferrer"/>
-        <p>${project.title}</p>
-      </a>`
-    })
+
+    const startIndex = (currentPage - 1) * projectPerPage;
+    const endIndex = startIndex + projectPerPage;
+
+    const paginatedProjects = projects.slice(startIndex, endIndex);
+
+    paginatedProjects.forEach((project) => {
+      projectsGrid.innerHTML += `
+        <a class="project-tile" href="${project.url}" target="_blank">
+          <img src="${project.screenshot}" alt="${project.title}" onerror="this.onerror = null; this.src ='images/sample.png'" rel="noopener noreferrer"/>
+          <p>${project.title}</p>
+        </a>`;
+    });
+
+    renderPageNumbers();
+
+    // Fade in
+    setTimeout(() => {
+      projectsGrid.classList.add('visible');
+    }, 20); 
+
+      projectsGrid.scrollIntoView({ behavior: 'smooth' });
+  }, 100); 
+};
 
 
-}
 
 window.onload = () => showVanillaJsProjects();
