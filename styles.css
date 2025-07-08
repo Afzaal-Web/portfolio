@@ -109,6 +109,13 @@ a {
 .project-tile p {
   font-weight: bold;
 }
+.project-tile img {
+  width: 100%;
+  height: 160px; /* Fixed height for uniformity */
+  object-fit: cover; /* Crops images to fit without distortion */
+  border-bottom: 1px solid var(--gray);
+  border-radius: 6px;
+}
 
 #contact {
   padding: 60px 20px;
@@ -158,8 +165,4 @@ a {
     width: 90%;
   }
 }
-.project-tile img {
-  width: 100%;
-  height: auto;
-  border-bottom: 1px solid var(--gray);
-}
+
