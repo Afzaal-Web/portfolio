@@ -47,6 +47,10 @@ const projects = [
         screenshot: "https://shots.codepen.io/Muhammad-Afzaal-the-reactor/pen/pvJqNLQ-512.webp",
         type: "react"
     },
+      {
+        url: 'https://afzaal-web.github.io/Api-Learning/',
+        type: "vanilla"
+    },
     {
         url: 'https://Afzaal-Web.github.io/Palindrome-JS-Checker',
         type: "vanilla"
