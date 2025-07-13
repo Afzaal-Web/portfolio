@@ -48,7 +48,7 @@ const projects = [
         type: "react"
     },
       {
-        url: 'https://afzaal-web.github.io/Api-Learning/',
+        url: 'https://afzaal-web.github.io/countries-explorer/',
         type: "vanilla"
     },
     {
