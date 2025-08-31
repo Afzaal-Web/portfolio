@@ -17,7 +17,7 @@ let currentPageReact = 1;
 let currentPageVanilla = 1;
 
 const projects = [
-    {
+      {
         url: "https://codepen.io/Muhammad-Afzaal-the-reactor/pen/yyNGaEP",
         title: "Random Quote Machine",
         screenshot: "https://shots.codepen.io/Muhammad-Afzaal-the-reactor/pen/yyNGaEP-512.webp",
@@ -46,6 +46,11 @@ const projects = [
         title: "25 + 5 Clock",
         screenshot: "https://shots.codepen.io/Muhammad-Afzaal-the-reactor/pen/pvJqNLQ-512.webp",
         type: "react"
+    },
+       {
+        url: "https://afzaal-web.github.io/webp-converter/",
+        title: "Image Converter",
+        type: "vanilla"
     },
       {
         url: 'https://afzaal-web.github.io/countries-explorer/',
